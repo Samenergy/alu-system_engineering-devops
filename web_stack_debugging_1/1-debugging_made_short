@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-# Changes port in Nginx
-sudo sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
-sudo nginx -t  # Check configuration syntax
+sudo apt-get update
+sudo apt-get install nginx -y
+sudo sed -i 's/listen 80 default_server;/listen 80;/g' /etc/nginx/sites-available/default
+sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
 sudo service nginx restart
-sleep 2  # Add a delay before verifying the result
-sudo nginx -t  # Check configuration syntax again
