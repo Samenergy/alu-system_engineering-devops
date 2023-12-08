@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
-# Update Nginx configuration to use port 80
-sudo sed -i -e "s/8080/80/g; t; q1" /etc/nginx/sites-enabled/default
-response=$(curl -s -o /dev/null -w "%{http_code}" http://localhost)
-if [[ $response -eq 200 ]]; then
-  echo "1"
-else
-  echo "0"
-fi
+# bash script that configures 'nginx' to run & listen to port 80
+sed -i "s/8080/80/g" /etc/nginx/sites-enabled/default
+service nginx restart
+sudo service nginx status
